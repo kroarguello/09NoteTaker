@@ -1,4 +1,4 @@
-
+const app = require('./server');
 
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
@@ -151,3 +151,4 @@ $noteText.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
+
