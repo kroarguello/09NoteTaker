@@ -29,7 +29,7 @@ router.post('/notes',function(req,res){
 //this api delete with id 
 router.delete('/notes/:id',function(req,res){
 
-    noteData.deleteNote(req.idnota)
+    noteData.deleteNote(req.params)
     .then((note)=>res.json(note))
     .catch((err) =>console.log(err))
 

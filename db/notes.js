@@ -37,11 +37,22 @@ class Notes {
         .then(() => newNote)
     }
 
-    deleteNote(id){
-        return this.getNotes()
+    deleteNote(note){
+        /*return this.getNotes()
         .then((notes) => notes.filter((note) => note.id !== parseInt(id)))
         .then(deletedNote => this.writeNotes(deleteNote))
-        
+        */
+       return this.getNotes().then((notes) => {
+        notes.forEach(async function(element){
+            if (element.id == note.id){
+                deletedElement = element;
+            }
+        })
+        const noteIndex = notes.indexOf(deletedElement);
+        notes.splice(noteIndex, 1);
+        this.writeNotes(notes);
+        return notes;
+    })
     }
 }
 
