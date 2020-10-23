@@ -1,40 +1,37 @@
 const router = require("express").Router();
 const fs = require('fs');
 const util = require('util');
-const noteData = require("../db/db.json");
+const noteData = require("../db/notes.js");
 
 //read db.json and return all saved
-router.get('/api/notes', function(req, res){
+router.get('/notes', function(req, res){
 console.log("here");
-//var temp = JSON.parse(noteList);
-//noteData.getNotes()
- //.then((notes)=>res.json(temp))
- //.catch((err) =>res.status(500).json(err))
-//fs.readFile('db/db.json', "utf8").then((noteList) => {
- 
+
+  noteData.getNotes()
+ .then((notes)=>res.json(notes))
+ .catch((err) =>console.log(err))
 
 }) 
-//});
+
 
 // received a new notes to save in the request body and 
 //add in db.json
 // and return new note to the client
 
-router.post('/api/notes',function(req,res){
+router.post('/notes',function(req,res){
  
-    noteData.saveNote()
-    .then((notes)=>res.json(temp))
-    .catch((err) =>res.status(500).json(err))
-
-//    fs.writeFileSync('./db/db.json',JSON.stringify(data));
-
-    //handleNoteSave -> svedNote -->getAndrenderNotes and renderActiveNote
+    noteData.addNote(req.body)
+    .then((notes)=>res.json(notes))
+    .catch((err) =>console.log(err))
 
 });
 
 //this api delete with id 
-router.delete('/api/notes/:d',function(req,res){
+router.delete('/notes/:id',function(req,res){
 
+    noteData.deleteNote(req.idnota)
+    .then((note)=>res.json(note))
+    .catch((err) =>console.log(err))
 
 });
 
